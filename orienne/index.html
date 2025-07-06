@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+<head>
   <meta charset="UTF-8">
   <title>Orienne x Niquegraph</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -8,12 +8,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../assets/favicon.png">
-  <meta name="theme-color" content="#000000"> <!-- Android Chrome -->
-  <meta name="apple-mobile-web-app-capable" content="yes"> <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <!-- iOS Safari -->
-  <meta name="msapplication-navbutton-color" content="#000000"> <!-- Windows Edge -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="msapplication-navbutton-color" content="#000000">
   <meta name="description" content="Silkroad by Niquegraph - Central connector for niquegraph services.">
+
   <style>
     html, body {
       margin: 0;
@@ -62,6 +62,13 @@
       transform: scale(1.05);
     }
 
+    .link-button .icon {
+      width: 18px;
+      height: 18px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
     .footer-menu {
       position: fixed;
       bottom: 0;
@@ -102,11 +109,9 @@
       gap: 10px;
     }
 
-    
-.context-menu.visible {
-  display: flex;
-  flex-direction: column;
-}
+    .context-menu.visible {
+      display: flex;
+    }
 
     .context-menu a {
       color: white;
@@ -119,13 +124,35 @@
       text-decoration: underline;
     }
 
+    .about-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+    }
 
-    .link-button .icon {
-  width: 18px;
-  height: 18px;
-  margin-right: 6px;
-  vertical-align:top
-}
+    .about-overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .about-text {
+      backdrop-filter: blur(4px) saturate(160%);
+      background-color: rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 30px;
+      font-weight: 400;
+      font-family: 'Montserrat', sans-serif;
+      color: white;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      max-width: 500px;
+      text-align: center;
+    }
 
     @media (max-width: 500px) {
       .logo-image {
@@ -136,6 +163,11 @@
       .link-button {
         width: 230px;
         font-size: 0.95rem;
+      }
+
+      .about-text {
+        margin: 0 20px;
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -154,33 +186,57 @@
     <div id="context-menu" class="context-menu">
       <a href="https://niquegraph.com">Go to Homepage</a>
     </div>
+    <div style="margin-top: 10px;">
+      <a href="javascript:void(0);" onclick="openSilkroad()" style="color: rgba(255,255,255,0.7); font-family: 'Montserrat'; font-size: 0.85rem; text-decoration: underline;">What is Silkroad?</a>
+    </div>
+  </div>
+
+  <!-- Silkroad Info Overlay -->
+  <div id="silkroad-overlay" class="about-overlay hidden">
+    <div class="about-text">
+      <p>Silkroad is the central routing system developed by Niquegraph to manage its services.</p>
+    </div>
   </div>
 
   <script>
-  const contextButton = document.getElementById('context-button');
-  const contextMenu = document.getElementById('context-menu');
+    const contextButton = document.getElementById('context-button');
+    const contextMenu = document.getElementById('context-menu');
+    const silkroadOverlay = document.getElementById('silkroad-overlay');
 
-  // Toggle menu on button click
-  contextButton.addEventListener('click', function (e) {
-    e.stopPropagation(); // prevent window click from firing
-    contextMenu.classList.toggle('visible');
-  });
+    function toggleMenu() {
+      contextMenu.classList.toggle('visible');
+    }
 
-  // Close menu when tapping/clicking outside
-  const closeContextMenu = () => contextMenu.classList.remove('visible');
+    function openSilkroad() {
+      silkroadOverlay.classList.add('visible');
+    }
 
-  // Listen to both touch and click
-  window.addEventListener('click', closeContextMenu);
-  window.addEventListener('touchstart', closeContextMenu);
+    function closeSilkroad() {
+      silkroadOverlay.classList.remove('visible');
+    }
 
-  // Prevent closing when clicking inside the menu
-  contextMenu.addEventListener('click', function (e) {
-    e.stopPropagation();
-  });
-  contextMenu.addEventListener('touchstart', function (e) {
-    e.stopPropagation();
-  });
-</script>
+    // Improved: Close menu only if clicking outside of context-menu and button
+function handleWindowClick(e) {
+  if (
+    !contextMenu.contains(e.target) &&
+    !contextButton.contains(e.target)
+  ) {
+    contextMenu.classList.remove('visible');
+  }
+}
+
+window.addEventListener('click', handleWindowClick);
+window.addEventListener('touchstart', handleWindowClick);
+
+
+    // Close overlay on background click
+    silkroadOverlay.addEventListener('click', e => {
+      if (e.target.id === 'silkroad-overlay') closeSilkroad();
+    });
+    silkroadOverlay.addEventListener('touchstart', e => {
+      if (e.target.id === 'silkroad-overlay') closeSilkroad();
+    });
+  </script>
 
 </body>
 </html>
