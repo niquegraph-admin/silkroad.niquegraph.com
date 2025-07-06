@@ -133,6 +133,7 @@
       justify-content: center;
       opacity: 0;
       pointer-events: none;
+      box-sizing: border-box;
     }
 
     .about-overlay.visible {
@@ -170,6 +171,13 @@
         font-size: 0.9rem;
       }
     }
+
+    @media (max-width: 600px) {
+  .about-overlay {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+      }
   </style>
 </head>
 <body>
