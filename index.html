@@ -141,7 +141,7 @@
   </div>
 
 <script>
-    const contextButton = document.getElementById('context-button');
+  const contextButton = document.getElementById('context-button');
   const contextMenu = document.getElementById('context-menu');
 
   // Toggle menu on button click
@@ -150,13 +150,18 @@
     contextMenu.classList.toggle('visible');
   });
 
-  // Close the menu when clicking outside
-  window.addEventListener('click', function () {
-    contextMenu.classList.remove('visible');
-  });
+  // Close menu when tapping/clicking outside
+  const closeContextMenu = () => contextMenu.classList.remove('visible');
+
+  // Listen to both touch and click
+  window.addEventListener('click', closeContextMenu);
+  window.addEventListener('touchstart', closeContextMenu);
 
   // Prevent closing when clicking inside the menu
   contextMenu.addEventListener('click', function (e) {
+    e.stopPropagation();
+  });
+  contextMenu.addEventListener('touchstart', function (e) {
     e.stopPropagation();
   });
 </script>
