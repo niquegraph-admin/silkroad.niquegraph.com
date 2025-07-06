@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <title>Orienne x Niquegraph</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Saira+Mono&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../assets/favicon.png">
   <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,57 +31,82 @@
       flex-direction: column;
       gap: 20px;
       text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     .logo-image {
-      width: 500px;
-      margin-bottom: 20px;
-      margin-top: -40px;
+      width: 320px;
+      margin-bottom: 30px;
     }
 
-    .link-button {
-      width: 230px;
-      padding: 14px 28px;
-      border: 2px solid white;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      font-family: 'Poppins';
-      font-size: 1rem;
-      text-decoration: none;
-      transition: transform 0.2s ease, background-image 0.4s ease;
-      mix-blend-mode: screen;
-      background-image: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      position: relative;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+    .terminal-box {
+  background-color: #1e1e1e;
+  border-radius: 16px;
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  text-align: left;
+  font-family: 'Saira Mono', monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255,255,255,0.2);
+  overflow-wrap: break-word; 
+  white-space: normal;  
+  box-sizing: border-box;     
+}
+
+
+    .terminal-line {
+      margin-bottom: 10px;
+      white-space: pre;
+      opacity: 0;
+      transform: translateY(5px);
+      animation: fadeIn 0.5s ease forwards;
+      overflow-wrap: break-word; 
+  white-space: normal;   
     }
 
-    .link-button:hover {
-      transform: scale(1.05);
+    .terminal-line a {
+      text-decoration: underline;
+      color: #fff;
     }
 
-    .link-button .icon {
-      width: 18px;
-      height: 18px;
-      margin-right: 6px;
-      vertical-align:middle;  
-    }
+    .gradient-link {
+  position: relative;
+  background-image: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
 
-    .link-button .left-icon {
+.gradient-link::after {
+  content: "";
   position: absolute;
-  left: 20px;
-  width: 18px;
-  height: 18px;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: #e01efa; /* Choose any solid color from the gradient */
 }
 
-.link-button .btn-text {
-  margin: 0 auto;
-  text-align: center;
-}
+    .link-comment {
+      color: rgba(255,255,255,0.5);
+      margin-left: 6px;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     .footer-menu {
       position: fixed;
@@ -171,43 +194,39 @@
       text-align: center;
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
       .logo-image {
-        width: 300px;
-        margin-top: -30px;
+        width: 240px;
+        margin-top: -20px;
       }
-
-      .link-button {
-        width: 230px;
-        font-size: 0.95rem;
+      .container {
+        padding-left: 16px;
+        padding-right: 16px;
       }
-      }
-     
-      @media (max-width: 600px) {
-  .about-overlay {
+      .terminal-box {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+      .about-text p {
+    font-size: 0.9rem; /* smaller paragraph text */
+  }
+     .about-overlay {
     padding-left: 20px;
     padding-right: 20px;
   }
-      }
+    }
   </style>
 </head>
 <body>
 
   <div class="container">
     <img src="../assets/image.png" alt="Orienne x Niquegraph" class="logo-image">
-    <a class="link-button" href="https://instagram.com/orienne.co" target="_blank">
-  <img src="../assets/instagram-white-icon.svg" alt="Instagram" class="left-icon">
-  <span class="btn-text"><b>Orienne</b></span>
-</a>
 
-<a class="link-button" href="https://instagram.com/niquegraph" target="_blank">
-  <img src="../assets/instagram-white-icon.svg" alt="Instagram" class="left-icon">
-  <span class="btn-text"><b>Niquegraph</b></span>
-</a>
-
+    <div class="terminal-box" id="terminal-box">
+      <!-- Lines will be injected below -->
+    </div>
   </div>
 
-  
   <!-- Footer Menu -->
   <div class="footer-menu">
     <button id="context-button" class="footer-button" onclick="toggleMenu()">Menu</button>
@@ -222,49 +241,93 @@
   <!-- Silkroad Info Overlay -->
   <div id="silkroad-overlay" class="about-overlay hidden">
     <div class="about-text">
-      <p>Silkroad is the central routing system developed by Niquegraph to manage its services.</p>
+      <p>Silkroad is the central routing system developed in-house by niquegraph to manage our services.</p>
     </div>
   </div>
 
   <script>
-    const contextButton = document.getElementById('context-button');
-    const contextMenu = document.getElementById('context-menu');
-    const silkroadOverlay = document.getElementById('silkroad-overlay');
+  const contextButton = document.getElementById('context-button');
+  const contextMenu = document.getElementById('context-menu');
+  const silkroadOverlay = document.getElementById('silkroad-overlay');
 
-    function toggleMenu() {
-      contextMenu.classList.toggle('visible');
-    }
-
-    function openSilkroad() {
-      silkroadOverlay.classList.add('visible');
-    }
-
-    function closeSilkroad() {
-      silkroadOverlay.classList.remove('visible');
-    }
-
-    // Improved: Close menu only if clicking outside of context-menu and button
-function handleWindowClick(e) {
-  if (
-    !contextMenu.contains(e.target) &&
-    !contextButton.contains(e.target)
-  ) {
-    contextMenu.classList.remove('visible');
+  function toggleMenu() {
+    contextMenu.classList.toggle('visible');
   }
-}
 
-window.addEventListener('click', handleWindowClick);
-window.addEventListener('touchstart', handleWindowClick);
+  function openSilkroad() {
+    silkroadOverlay.classList.add('visible');
+  }
 
+  function closeSilkroad() {
+    silkroadOverlay.classList.remove('visible');
+  }
 
-    // Close overlay on background click
-    silkroadOverlay.addEventListener('click', e => {
-      if (e.target.id === 'silkroad-overlay') closeSilkroad();
-    });
-    silkroadOverlay.addEventListener('touchstart', e => {
-      if (e.target.id === 'silkroad-overlay') closeSilkroad();
-    });
-  </script>
+  window.addEventListener('click', e => {
+    if (!contextMenu.contains(e.target) && !contextButton.contains(e.target)) {
+      contextMenu.classList.remove('visible');
+    }
+  });
+
+  window.addEventListener('touchstart', e => {
+    if (!contextMenu.contains(e.target) && !contextButton.contains(e.target)) {
+      contextMenu.classList.remove('visible');
+    }
+  });
+
+  silkroadOverlay.addEventListener('click', e => {
+    if (e.target.id === 'silkroad-overlay') closeSilkroad();
+  });
+  silkroadOverlay.addEventListener('touchstart', e => {
+    if (e.target.id === 'silkroad-overlay') closeSilkroad();
+  });
+
+  // Terminal Typing Effect
+  const terminal = document.getElementById("terminal-box");
+  const lines = [
+    'niquegraph-x-Orienne/',
+    '|_ <a href="https://instagram.com/orienne.co" target="_blank" class="gradient-link">instagram.com/orienne.co</a>',
+    '|_ <a href="https://exhibit.niquegraph.com/orienne" target="_blank">exhibit.niquegraph.com/orienne</a><span class="link-comment"> ← more info (soon)</span>'
+  ];
+
+  function typeLine(line, index, callback) {
+    const div = document.createElement("div");
+    div.className = "terminal-line";
+    terminal.appendChild(div);
+
+    let i = 0;
+    const typeChar = () => {
+      if (i <= line.length) {
+        // slice so tags aren't broken
+        div.innerHTML = line.slice(0, i);
+        i++;
+         setTimeout(typeChar, 5); // Faster typing
+    } else {
+      if (callback) setTimeout(callback, 100); // Faster line-to-line transition
+      }
+    };
+
+    typeChar();
+  }
+
+  function startTyping(lines) {
+    let index = 0;
+
+    const next = () => {
+      if (index < lines.length) {
+        typeLine(lines[index], index, () => {
+          index++;
+          next();
+        });
+      }
+    };
+
+    next();
+  }
+
+  window.onload = () => {
+    startTyping(lines);
+  };
+</script>
 
 </body>
 </html>
