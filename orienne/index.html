@@ -48,7 +48,7 @@
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.1);
       color: white;
-      font-family: 'Nunito';
+      font-family: 'Poppins';
       font-size: 1rem;
       text-decoration: none;
       transition: transform 0.2s ease, background-image 0.4s ease;
@@ -102,6 +102,12 @@
       gap: 10px;
     }
 
+    
+.context-menu.visible {
+  display: flex;
+  flex-direction: column;
+}
+
     .context-menu a {
       color: white;
       text-decoration: none;
@@ -112,6 +118,7 @@
     .context-menu a:hover {
       text-decoration: underline;
     }
+
 
     .link-button .icon {
   width: 18px;
@@ -141,18 +148,33 @@
     <a class="link-button" href="https://instagram.com/niquegraph" target="_blank"><img src="../assets/instagram-white-icon.svg" alt="Instagram" class="icon"><b>Niquegraph</b></a>
   </div>
 
+  <!-- Footer Menu -->
   <div class="footer-menu">
-    <button class="footer-button" onclick="toggleMenu()">Menu</button>
+    <button id="context-button" class="footer-button" onclick="toggleMenu()">Menu</button>
     <div id="context-menu" class="context-menu">
       <a href="https://niquegraph.com">Go to Homepage</a>
     </div>
   </div>
 
   <script>
-    function toggleMenu() {
-      const menu = document.getElementById('context-menu');
-      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
-    }
+    const contextButton = document.getElementById('context-button');
+  const contextMenu = document.getElementById('context-menu');
+
+  // Toggle menu on button click
+  contextButton.addEventListener('click', function (e) {
+    e.stopPropagation(); // prevent window click from firing
+    contextMenu.classList.toggle('visible');
+  });
+
+  // Close the menu when clicking outside
+  window.addEventListener('click', function () {
+    contextMenu.classList.remove('visible');
+  });
+
+  // Prevent closing when clicking inside the menu
+  contextMenu.addEventListener('click', function (e) {
+    e.stopPropagation();
+  });
   </script>
 
 </body>
