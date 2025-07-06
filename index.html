@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Orienne x Niquegraph</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Silkroad by Niquegraph – connecting digital experiences through physical design.">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: radial-gradient(circle at center, #1a1a1a 0%, #111 100%);
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      overflow: hidden;
+    }
+
+    .container {
+      height: 100dvh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .logo-image {
+      width: 500px;
+      margin-bottom: 20px;
+      margin-top: -40px;
+    }
+
+    .link-button {
+      width: 230px;
+      padding: 14px 28px;
+      border: 2px solid white;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-family: 'Nunito';
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform 0.2s ease, background-image 0.4s ease;
+      mix-blend-mode: screen;
+      background-image: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .link-button:hover {
+      transform: scale(1.05);
+    }
+
+    .footer-menu {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      z-index: 10;
+    }
+
+    .footer-button {
+      backdrop-filter: blur(6px) saturate(180%);
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.8);
+      font-family: 'Montserrat', sans-serif;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .footer-button:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .context-menu {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 10px;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .context-menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .context-menu a:hover {
+      text-decoration: underline;
+    }
+
+    .link-button .icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  vertical-align:top
+}
+
+    @media (max-width: 500px) {
+      .logo-image {
+        width: 300px;
+        margin-top: -30px;
+      }
+
+      .link-button {
+        width: 230px;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img src="image.png" alt="Orienne x Niquegraph" class="logo-image">
+    <a class="link-button" href="https://instagram.com/orienne_e" target="_blank"><img src="instagram-white-icon.svg" alt="Instagram" class="icon"><b>Orienne</b></a>
+    <a class="link-button" href="https://instagram.com/niquegraph" target="_blank"><img src="instagram-white-icon.svg" alt="Instagram" class="icon"><b>Niquegraph</b></a>
+  </div>
+
+  <div class="footer-menu">
+    <button class="footer-button" onclick="toggleMenu()">Menu</button>
+    <div id="context-menu" class="context-menu">
+      <a href="https://niquegraph.com">Go to Homepage</a>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('context-menu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+  </script>
+
+</body>
+</html>
