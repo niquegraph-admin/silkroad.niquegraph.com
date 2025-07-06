@@ -56,6 +56,10 @@
       background-image: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
     }
 
     .link-button:hover {
@@ -66,8 +70,20 @@
       width: 18px;
       height: 18px;
       margin-right: 6px;
-      vertical-align: middle;
+      vertical-align:middle;  
     }
+
+    .link-button .left-icon {
+  position: absolute;
+  left: 20px;
+  width: 18px;
+  height: 18px;
+}
+
+.link-button .btn-text {
+  margin: 0 auto;
+  text-align: center;
+}
 
     .footer-menu {
       position: fixed;
@@ -165,14 +181,9 @@
         width: 230px;
         font-size: 0.95rem;
       }
-
-      .about-text {
-        margin: 0 20px;
-        font-size: 0.9rem;
       }
-    }
-
-    @media (max-width: 600px) {
+     
+      @media (max-width: 600px) {
   .about-overlay {
     padding-left: 20px;
     padding-right: 20px;
@@ -184,10 +195,19 @@
 
   <div class="container">
     <img src="../assets/image.png" alt="Orienne x Niquegraph" class="logo-image">
-    <a class="link-button" href="https://instagram.com/orienne.co" target="_blank"><img src="../assets/instagram-white-icon.svg" alt="Instagram" class="icon"><b>Orienne</b></a>
-    <a class="link-button" href="https://instagram.com/niquegraph" target="_blank"><img src="../assets/instagram-white-icon.svg" alt="Instagram" class="icon"><b>Niquegraph</b></a>
+    <a class="link-button" href="https://instagram.com/orienne.co" target="_blank">
+  <img src="../assets/instagram-white-icon.svg" alt="Instagram" class="left-icon">
+  <span class="btn-text"><b>Orienne</b></span>
+</a>
+
+<a class="link-button" href="https://instagram.com/niquegraph" target="_blank">
+  <img src="../assets/instagram-white-icon.svg" alt="Instagram" class="left-icon">
+  <span class="btn-text"><b>Niquegraph</b></span>
+</a>
+
   </div>
 
+  
   <!-- Footer Menu -->
   <div class="footer-menu">
     <button id="context-button" class="footer-button" onclick="toggleMenu()">Menu</button>
