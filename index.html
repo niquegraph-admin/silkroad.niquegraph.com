@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>404 - Silkroad can't help you</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <meta name="theme-color" content="#000000"> <!-- Android Chrome -->
+  <meta name="apple-mobile-web-app-capable" content="yes"> <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <!-- iOS Safari -->
+  <meta name="msapplication-navbutton-color" content="#000000"> <!-- Windows Edge -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Silkroad by Niquegraph - Central connector for niquegraph services.">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: radial-gradient(circle at center, #1a1a1a 0%, #111 100%);
+      font-family: 'Poppins', sans-serif;
+      color: white;
+    }
+
+    .logo {
+      position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: auto;
+  z-index: 10
+    }
+
+    .center-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.3rem;
+      text-align: center;
+      opacity: 0.85;
+      z-index: 2;
+    }
+
+    .footer-menu {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      z-index: 10;
+    }
+
+    .footer-button {
+      backdrop-filter: blur(6px) saturate(180%);
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.8);
+      font-family: 'Montserrat', sans-serif;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .footer-button:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .context-menu {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 10px;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    
+.context-menu.visible {
+  display: flex;
+  flex-direction: column;
+}
+
+    .context-menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .context-menu a:hover {
+      text-decoration: underline;
+    }
+
+
+    @media (max-width: 600px) {
+      .center-text {
+        font-size: 1rem;
+        padding: 0 20px;
+      }
+
+      .logo {
+       
+      }
+
+      .footer-menu {
+        font-size: 0.8rem;
+        padding: 8px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Logo -->
+  <img class="logo" src="logo.png" alt="Niquegraph Logo">
+
+  <!-- Centered Message -->
+  <div class="center-text">
+    <h1>:(</h1></h1>Looking for something..? <br>This is not the place.</br><br>
+    <small>Silkroad just connects places together.<br> Try double checking your path: silkroad.niquegraph.com/path</small>
+  </div>
+
+  <!-- Footer Menu -->
+  <div class="footer-menu">
+    <button id="context-button" class="footer-button" onclick="toggleMenu()">Menu</button>
+    <div id="context-menu" class="context-menu">
+      <a href="https://niquegraph.com">Go to Homepage</a>
+    </div>
+  </div>
+
+<script>
+    const contextButton = document.getElementById('context-button');
+  const contextMenu = document.getElementById('context-menu');
+
+  // Toggle menu on button click
+  contextButton.addEventListener('click', function (e) {
+    e.stopPropagation(); // prevent window click from firing
+    contextMenu.classList.toggle('visible');
+  });
+
+  // Close the menu when clicking outside
+  window.addEventListener('click', function () {
+    contextMenu.classList.remove('visible');
+  });
+
+  // Prevent closing when clicking inside the menu
+  contextMenu.addEventListener('click', function (e) {
+    e.stopPropagation();
+  });
+</script>
+
+</body>
+</html>
